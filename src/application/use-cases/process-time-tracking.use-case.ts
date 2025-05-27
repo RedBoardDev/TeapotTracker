@@ -8,7 +8,7 @@ export class ProcessTimeTrackingUseCase {
 
   async execute(payload: WebhookPayloadDto): Promise<void> {
     try {
-      const timeInterval = new TimeInterval(payload.timeInterval.start, payload.timeInterval.end);
+      const timeInterval = new TimeInterval(payload.timeInterval.start, payload.timeInterval.end ?? undefined);
 
       if (payload.currentlyRunning && timeInterval.isRunning()) {
         if (payload.project?.clientName) {
